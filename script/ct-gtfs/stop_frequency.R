@@ -5,7 +5,7 @@ library(pryr)
 library(dplyr)
 library(here)
 
-zip <- here("data/2020-06-15_Connect-GTFS.zip")
+zip <- here("data/gtfs/2020-06-15_connect-transit_GTFS.zip")
 #zip <- file.choose()
 outDir <- substring(zip, 1, nchar(zip)-4)
 
@@ -104,7 +104,7 @@ stops <- distinct(stops, stop_id, .keep_all = TRUE)
 
 stops_sf <- st_as_sf(stops,crs=4326,coords=c("stop_lon","stop_lat")) %>%
   st_transform(3443) %>%
-  write_sf(here("output/ct_stops.shp"))
+  write_sf(here("data/ct_stops.shp"))
 
 spdf <- SpatialPointsDataFrame(coords = c(stops[4],stops[3]), data = stops, proj4string = CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 writeOGR(spdf, dsn=here("output"), layer="CT_StopFreq_1JUL19",driver="ESRI Shapefile")

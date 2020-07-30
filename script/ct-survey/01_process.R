@@ -13,7 +13,7 @@ invisible(lapply(packages, library, character.only = TRUE))
 
 
 # tidy 2018 survey data ---------------------------------------------------
-filename <- "data/20180619_OD_Connect_Submittal_FINAL.xlsx"
+filename <- "data/2018-06-19_customer-satisfaction-OD-rider-survey.XLSX"
 survey_2018 <- read_xlsx(filename, 1) %>%
   clean_names() %>%
   select(-(176:178)) %>%
@@ -24,7 +24,7 @@ survey_2018 <- read_xlsx(filename, 1) %>%
 # (will probably have to do something interesting with ethnicity and gender, etc)
 
 # tidy 2019 survey data ---------------------------------------------------
-survey_2019 <- read_xls("data/2019-06-27_Customer-satisfaction-survey.xls") %>%
+survey_2019 <- read_xls("data/2019-06-27_customer-satisfaction-survey.xls") %>%
   clean_names() %>%
   # the 'other' responses are not terribly informative
   left_join(tribble(
